@@ -26,10 +26,6 @@ def calculate_current_flatmate(flatmates, starting_date):
 
 
 def main():
-    # Just run on mondays
-    #if date.today().weekday() != 0:
-    #    return
-
     flatmates, starting_date = read_cfg()
     current_flatmate = calculate_current_flatmate(flatmates, starting_date)
     print(generate_message(current_flatmate))
