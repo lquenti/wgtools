@@ -10,6 +10,14 @@ Das Repo ist wie folgt aufgebaut:
 
 Siehe die einzelnen Ordner.
 
+## Deployment
+
+### Müllbenachrichtigung Telegram
+
+Cronjob für [`send_trash_message`](./send_trash_message.sh) erstellen, ich kann [crontab.guru](https://crontab.guru/) empfehlen!
+
+Ich lasse es zum Beispiel jeden Montag um 8 Uhr Morgens laufen, sprich `0 8 * * 1`
+
 ## LICENSE
 
 Do What The Fuck You Want To Public License
