@@ -8,7 +8,7 @@ WG_FILENAME: str = "wg.json"
 WG_FILEPATH: str = os.path.join(BASE_PATH, WG_FILENAME)
 
 def generate_message(who):
-    return f"Diese Woche hat {who} Putzdienst!"
+    return f"{who} has to bring out the trash this week!"
 
 def read_cfg():
     with open(WG_FILEPATH) as fp:
