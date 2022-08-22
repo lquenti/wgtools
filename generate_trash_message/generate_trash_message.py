@@ -8,6 +8,9 @@ WG_FILENAME: str = "wg.json"
 WG_FILEPATH: str = os.path.join(BASE_PATH, WG_FILENAME)
 
 def generate_message(who):
+    # alternative message if the room is not rented out
+    if who.isdigit():
+        return f"Room {who} is currently not rented out.\nPlease bring out the trash yourself if it is full."
     return f"{who} has to bring out the trash this week!\nDon't forget glass as well!"
 
 def read_cfg():
