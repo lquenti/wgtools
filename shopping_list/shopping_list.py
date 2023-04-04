@@ -44,14 +44,22 @@ async def delete(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if init_message_id is None:
         context.bot.send_message(chat_id=update.effective_chat.id, text="Please use /new first")
         return
-    index = int(update.message.text.split(' ', 1)[1])
+    msg = update.message.text.split(" ")[1:]
+
     if len(EINKAUFS_LISTE) == 0:
         context.bot.send_message(chat_id=update.effective_chat.id, text="Die Liste ist leer")
         return
-    if index > len(EINKAUFS_LISTE):
-        context.bot.send_message(chat_id=update.effective_chat.id, text="Die Zahl ist zu groß")
-        return
-    EINKAUFS_LISTE.pop(index - 1)
+
+    print(msg[0].lower().strip())
+
+    if msg[0].lower().strip() == "all":
+        EINKAUFS_LISTE.clear()
+    else:
+        index = int(update.message.text.split(' ', 1)[1])
+        if index > len(EINKAUFS_LISTE):
+            context.bot.send_message(chat_id=update.effective_chat.id, text="Die Zahl ist zu groß")
+            return
+        EINKAUFS_LISTE.pop(index - 1)
     await context.bot.edit_message_text(chat_id=update.effective_chat.id, message_id=init_message_id, text=build_einkaufsliste())
 
 if __name__ == '__main__':
