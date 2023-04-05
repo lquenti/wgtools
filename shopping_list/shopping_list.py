@@ -33,7 +33,7 @@ async def new(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def add(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if init_message_id is None:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="Please use /new first")
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Please use /new first")
         return
     element = update.message.text.split(' ', 1)[1]
     EINKAUFS_LISTE.append(element)
@@ -42,27 +42,27 @@ async def add(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def delete(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if init_message_id is None:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="Please use /new first")
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Please use /new first")
         return
     msg = update.message.text.split(" ")[1:]
 
     if len(EINKAUFS_LISTE) == 0:
-        context.bot.send_message(chat_id=update.effective_chat.id, text="Die Liste ist leer")
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Die Liste ist leer")
         return
 
     print(msg[0].lower().strip())
 
     if msg[0].lower().strip() == "all":
         while len(EINKAUFS_LISTE) != 0:
-            elem = EINKAUFSLISTE.pop(0)
-            context.bot.send_message(chat_id=update.effective_chat.id, text=f"{elem} wurde gekauft")
+            elem = EINKAUFS_LISTE.pop(0)
+            await context.bot.send_message(chat_id=update.effective_chat.id, text=f"{elem} wurde gekauft")
     else:
         index = int(update.message.text.split(' ', 1)[1])
         if index > len(EINKAUFS_LISTE):
-            context.bot.send_message(chat_id=update.effective_chat.id, text="Die Zahl ist zu groß")
+            await context.bot.send_message(chat_id=update.effective_chat.id, text="Die Zahl ist zu groß")
             return
         elem = EINKAUFS_LISTE.pop(index - 1)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"{elem} wurde gekauft")
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=f"{elem} wurde gekauft")
     await context.bot.edit_message_text(chat_id=update.effective_chat.id, message_id=init_message_id, text=build_einkaufsliste())
 
 if __name__ == '__main__':
