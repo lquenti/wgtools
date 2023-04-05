@@ -11,7 +11,7 @@ suffix = """has cleaning duty this week
 This includes the following:
 - Take out the trash (2 bins outside, 2 in the kitchen)
 - Take out the glass under the sink
-- Wash the common utilities, i.e. all kitchen towels and both bath mats. The dirty towels can be found next to the wooden bank in the living room, the clean ones can be found in shelf 11."""
+- Wash the common utilities, i.e. all kitchen towels, both bath mats, and both bath hand towels. The dirty towels can be found next to the wooden bank in the living room, the clean ones can be found in shelf 11b."""
 
 def generate_message(who):
     return f"{who} {suffix}"
