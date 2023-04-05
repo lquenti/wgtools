@@ -7,11 +7,14 @@ BASE_PATH: str = os.path.dirname(os.path.realpath(__file__))
 WG_FILENAME: str = "wg.json"
 WG_FILEPATH: str = os.path.join(BASE_PATH, WG_FILENAME)
 
+suffix = """has cleaning duty this week
+This includes the following:
+- Take out the trash (2 bins outside, 2 in the kitchen)
+- Take out the glass under the sink
+- Wash the common utilities, i.e. all kitchen towels and both bath mats. The dirty towels can be found next to the wooden bank in the living room, the clean ones can be found in shelf 11."""
+
 def generate_message(who):
-    # alternative message if the room is not rented out
-    if who.isdigit():
-        return f"Room {who} is currently not rented out.\nPlease bring out the trash yourself if it is full."
-    return f"{who} has to bring out the trash this week!\nDon't forget glass as well!"
+    return f"{who} {suffix}"
 
 def read_cfg():
     with open(WG_FILEPATH) as fp:
