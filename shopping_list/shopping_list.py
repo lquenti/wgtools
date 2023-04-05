@@ -53,13 +53,16 @@ async def delete(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print(msg[0].lower().strip())
 
     if msg[0].lower().strip() == "all":
-        EINKAUFS_LISTE.clear()
+        while len(EINKAUFS_LISTE) != 0:
+            elem = EINKAUFSLISTE.pop(0)
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f"{elem} wurde gekauft")
     else:
         index = int(update.message.text.split(' ', 1)[1])
         if index > len(EINKAUFS_LISTE):
             context.bot.send_message(chat_id=update.effective_chat.id, text="Die Zahl ist zu groß")
             return
-        EINKAUFS_LISTE.pop(index - 1)
+        elem = EINKAUFS_LISTE.pop(index - 1)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=f"{elem} wurde gekauft")
     await context.bot.edit_message_text(chat_id=update.effective_chat.id, message_id=init_message_id, text=build_einkaufsliste())
 
 if __name__ == '__main__':
